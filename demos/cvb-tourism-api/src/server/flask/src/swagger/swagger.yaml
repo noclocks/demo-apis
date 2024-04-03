@@ -15,7 +15,7 @@ paths:
       tags:
       - POI
       summary: List all points of interest
-      operationId: listPOIs
+      operationId: list_pois
       parameters:
       - name: category
         in: query
@@ -34,12 +34,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PointOfInterest'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.poi_controller
   /hotels:
     get:
       tags:
       - Hotel
       summary: List all hotels
-      operationId: listHotels
+      operationId: list_hotels
       parameters:
       - name: stars
         in: query
@@ -60,6 +62,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Hotel'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.hotel_controller
 components:
   schemas:
     PointOfInterest:
@@ -74,6 +78,13 @@ components:
           type: string
         location:
           $ref: '#/components/schemas/PointOfInterest_location'
+      example:
+        name: name
+        location:
+          lng: 1.4658129
+          lat: 6.0274563
+        id: 0
+        category: category
     Hotel:
       type: object
       properties:
@@ -86,6 +97,13 @@ components:
           type: integer
         location:
           $ref: '#/components/schemas/PointOfInterest_location'
+      example:
+        name: name
+        location:
+          lng: 1.4658129
+          lat: 6.0274563
+        id: 0
+        stars: 6
     PointOfInterest_location:
       type: object
       properties:
@@ -95,3 +113,7 @@ components:
         lng:
           type: number
           format: float
+      example:
+        lng: 1.4658129
+        lat: 6.0274563
+
